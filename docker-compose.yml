@@ -1,17 +1,19 @@
 version: '3'
 services:
-  php:
+  php-fpm:
     build:
       context: docker/php
     container_name: first_bit_php
     volumes:
-      - ./www:/var/www
+      - ./:/var/www
     environment:
       XDEBUG_CONFIG: "remote_host=host.docker.internal remote_enable=1"
       PHP_IDE_CONFIG: "serverName=Docker"
     depends_on:
       - mysql
     restart: unless-stopped
+    networks:
+      - internal
 
   nginx:
     image: nginx:latest
@@ -20,11 +22,13 @@ services:
       - "80:80"
     volumes:
       - ./hosts:/etc/nginx/conf.d
-      - ./www:/var/www
+      - ./:/var/www
       - ./logs:/var/log/nginx
     restart: unless-stopped
     depends_on:
-      - php
+      - php-fpm
+    networks:
+      - internal
 
   mysql:
     image: mysql:5.7.32
@@ -36,3 +40,13 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: secret
     restart: unless-stopped
+    networks:
+      - internal
+
+networks:
+  internal:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.220.0/28
