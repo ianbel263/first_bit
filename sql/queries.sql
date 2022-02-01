@@ -44,3 +44,11 @@ WHERE id = 5;
 UPDATE user
 SET birthday_at = '1966-05-05', email = '6@mail.ru', phone = '79031112233'
 WHERE id = 6;
+
+ALTER TABLE user
+    ADD (last_login_at DATETIME DEFAULT NULL,
+         is_active BOOLEAN DEFAULT 1,
+         nickname VARCHAR(255)
+        );
+
+TRUNCATE user;

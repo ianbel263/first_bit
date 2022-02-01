@@ -1,5 +1,10 @@
 <?php
 require_once('init.php');
+require_once('main/functions.php');
+
+if (get_user()) {
+    die();
+}
 
 $response_data = [
     'result' => '',
