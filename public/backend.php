@@ -6,16 +6,17 @@ $PASSWORD = 'secret';
 $USER_DATA = 'Васильев Иван Иванович';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $form_data = $_POST;
-    $errors = validate($form_data);
+    $json = file_get_contents('php://input');
+    $post_data = json_decode($json, true);
+    $errors = validate($post_data);
 
     if (count($errors)) {
         $page_content = include_template('login.php', [
             'errors' => $errors
         ]);
     } else {
-        $user = $form_data['username'];
-        $password = $form_data['password'];
+        $user = $post_data['username'];
+        $password = $post_data['password'];
         if ($user == $USERNAME) {
             if ($password != $PASSWORD) {
                 $errors['password'] = 'Неверный пароль';
