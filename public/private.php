@@ -14,7 +14,7 @@ if ($link) {
     ]);
 
     $layout_content = include_template('layout.php', [
-        'title' => 'Первый Бит - Профиль пользователя',
+        'title' => 'Первый Бит - Приватная страница пользователя',
         'content' => $page_content,
     ]);
 
