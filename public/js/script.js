@@ -11,6 +11,16 @@ const Urls = {
     AUTH: 'backend.php',
 };
 
+const AuthResult = {
+    SUCCESS: 'success',
+    FAILURE: 'failure'
+};
+
+const authForm = document.querySelector('#auth_form');
+const usernameInputEl = authForm.querySelector('#username');
+const passwordInputEl = authForm.querySelector('#password');
+const welcomeTextEl = document.querySelector('.welcome__text');
+
 const checkStatus = (response) => {
     if (response.status >= 200 && response.status < 300) {
         return response;
@@ -32,8 +42,8 @@ const load = ({url, method = RequestMethod.GET, body = null, headers = new Heade
 
 const onAuthFormSubmit = (evt) => {
     evt.preventDefault();
-    const username = evt.target.querySelector('#username').value;
-    const password = evt.target.querySelector('#password').value;
+    const username = usernameInputEl.value;
+    const password = passwordInputEl.value;
     const credentials = {
         username,
         password
@@ -46,19 +56,53 @@ const onAuthFormSubmit = (evt) => {
         }),
         body: JSON.stringify(credentials),
     })
-        .then((response) => response.text())
-        .then((html) => {
-            document.body.innerHTML = html;
-            addAuthFormListener();
+        .then((response) => response.json())
+        .then((data) => {
+            switch (data.result) {
+                case AuthResult.SUCCESS:
+                    onSuccessAuth(data.data);
+                    break;
+                case AuthResult.FAILURE:
+                    onFailureAuth(data.errors);
+                    break;
+            }
         })
         .catch((error) => {
             console.log(error)
         });
 };
 
-const addAuthFormListener = () => {
-    const authForm = document.querySelector('#auth_form');
-    authForm.addEventListener('submit', onAuthFormSubmit);
-}
+const onSuccessAuth = (data) => {
+    unMarkInvalid();
+    welcomeTextEl.textContent = `Добро пожаловать, ${data}!`;
+    authForm.hidden = true;
+    welcomeTextEl.parentElement.hidden = false;
+};
 
-addAuthFormListener();
+const onFailureAuth = (errors) => {
+    markAsInvalid(errors);
+    passwordInputEl.value = '';
+};
+
+const unMarkInvalid = () => {
+    const formItems = authForm.querySelectorAll('.form__item');
+    formItems.forEach((item) => {
+        if (item.classList.contains('form__item--invalid')) {
+            item.classList.remove('form__item--invalid');
+        }
+        item.querySelector('.form__error').textContent = '';
+    });
+};
+
+const markAsInvalid = (errors) => {
+    unMarkInvalid(errors);
+    for (let [key, value] of Object.entries(errors)) {
+        const inputEl = authForm.querySelector(`input[name=${key}]`);
+        const formItem = inputEl.parentElement;
+        const errorMessageEl = formItem.querySelector('.form__error');
+        formItem.classList.add('form__item--invalid');
+        errorMessageEl.textContent = value;
+    }
+};
+
+authForm.addEventListener('submit', onAuthFormSubmit);
