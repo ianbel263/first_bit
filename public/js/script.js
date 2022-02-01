@@ -73,8 +73,9 @@ const onAuthFormSubmit = (evt) => {
 };
 
 const onSuccessAuth = (data) => {
+    const userFullname = `${data.last_name} ${data.first_name} ${data.middle_name}`
     unMarkInvalid();
-    welcomeTextEl.textContent = `Добро пожаловать, ${data}!`;
+    welcomeTextEl.textContent = `Добро пожаловать, ${userFullname}!`;
     authForm.hidden = true;
     welcomeTextEl.parentElement.hidden = false;
 };

@@ -1,4 +1,17 @@
 <?php
+
+function connect_db(string $host, string $user, string $pwd, string $name) {
+    $link = mysqli_connect($host, $user, $pwd, $name);
+    mysqli_set_charset($link, 'utf8');
+
+    if (!$link) {
+        return false;
+    } else {
+        return $link;
+    }
+}
+
+
 /**
  * Подключает шаблон, передает туда данные и возвращает итоговый HTML контент
  * @param string $name Путь к файлу шаблона относительно папки templates
