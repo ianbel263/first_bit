@@ -1,7 +1,3 @@
-<a href="index.php">Главная</a>
-<a href="private.php">Приватная</a>
-<a href="personal.php">Персональная</a>
-
 <div class="welcome" hidden>
     <p class="welcome__text"></p>
 </div>

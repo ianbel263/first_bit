@@ -1,11 +1,11 @@
-<a href="index.php">Главная</a>
-<a href="private.php">Приватная</a>
-<a href="logout.php">Выйти</a>
-
 <div class="profile">
-    <ul class="profile__list">
+    <h2 class="profile__heading">Информация о пользователе:</h2>
+    <table class="profile__table table">
         <?php foreach ($user_data as $key => $value) : ?>
-            <li class="profile__item"><?= $key ?>: <?= $value ?></li>
+            <tr class="table__row">
+                <td class="table__col"><?= $key ?></td>
+                <td class="table__col"><?= $value ?></td>
+            </tr>
         <?php endforeach; ?>
-    </ul>
+    </table>
 </div>
