@@ -36,6 +36,9 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="/auth.php">Войти</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/register.php">Регистрация</a>
+                            </li>
                         <? else : ?>
                             <li class="nav-item">
                                 <a class="nav-link" href="/logout.php">Выйти</a>

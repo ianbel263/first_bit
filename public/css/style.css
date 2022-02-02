@@ -50,6 +50,10 @@ body {
     border-radius: 15px;
 }
 
+.form--register {
+    width: auto;
+}
+
 .form__heading {
     margin: 0;
     margin-bottom: 25px;
