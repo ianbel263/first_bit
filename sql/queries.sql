@@ -1,4 +1,4 @@
-INSERT INTO user (username, pwd, first_name, middle_name, last_name)
+INSERT INTO user (username, password, first_name, middle_name, last_name)
 VALUES ('test', 'secret', 'Иван', 'Иванович', 'Васильев'),
        ('test2', 'secret', 'Петр', 'Григорьевич', 'Иванов'),
        ('test3', 'secret', 'Алексей', 'Игоревич', 'Петров'),

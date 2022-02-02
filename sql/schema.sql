@@ -6,7 +6,7 @@ CREATE DATABASE first_bit
 USE first_bit;
 
 CREATE TABLE user (
-    id            INT AUTO_INCREMENT PRIMARY KEY,
+    id            INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     username      VARCHAR(255) NOT NULL UNIQUE,
     password      CHAR(255)    NOT NULL,
     nickname      VARCHAR(255),
@@ -24,7 +24,7 @@ CREATE TABLE user (
 );
 
 CREATE TABLE post (
-    id         INT AUTO_INCREMENT PRIMARY KEY,
+    id         INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     author_id  INT UNSIGNED NOT NULL,
     image_url  VARCHAR(255),
     heading    VARCHAR(64),
@@ -35,5 +35,5 @@ CREATE TABLE post (
 
 ALTER TABLE post
     ADD CONSTRAINT post_author_id_fk
-        FOREIGN KEY (author_id) REFERENCES user (id)
+        FOREIGN KEY (author_id) REFERENCES user(id)
             ON DELETE CASCADE;

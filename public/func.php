@@ -5,7 +5,7 @@ function connect_db(string $host, string $user, string $pwd, string $name) {
     mysqli_set_charset($link, 'utf8');
 
     if (!$link) {
-        return false;
+        throw new Exception('Error connect DB');
     } else {
         return $link;
     }
