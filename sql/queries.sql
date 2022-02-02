@@ -1,4 +1,4 @@
-INSERT INTO user (username, pwd, first_name, middle_name, last_name)
+INSERT INTO user (username, password, first_name, middle_name, last_name)
 VALUES ('test', 'secret', 'Иван', 'Иванович', 'Васильев'),
        ('test2', 'secret', 'Петр', 'Григорьевич', 'Иванов'),
        ('test3', 'secret', 'Алексей', 'Игоревич', 'Петров'),
@@ -6,12 +6,12 @@ VALUES ('test', 'secret', 'Иван', 'Иванович', 'Васильев'),
        ('test5', 'secret', 'Василий', 'Леонидович', 'Григорьев'),
        ('test6', 'secret', 'Дарья', 'Петровна', 'Лобанова');
 
-ALTER TABLE user
-    ADD (birthday_at DATE DEFAULT NULL,
-         gender enum ('m', 'f'),
-         email VARCHAR(255),
-         phone CHAR(11)
-        );
+# ALTER TABLE user
+#     ADD (birthday_at DATE DEFAULT NULL,
+#          gender enum ('m', 'f'),
+#          email VARCHAR(255),
+#          phone CHAR(11)
+#         );
 
 UPDATE user
 SET gender = 'm'
