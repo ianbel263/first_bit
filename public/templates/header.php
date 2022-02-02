@@ -24,18 +24,21 @@
                     </a>
                     <ul class="nav navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="private.php">Приватная</a>
+                            <a class="nav-link" href="/blog/example.php">Блог</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="personal.php">Персональная</a>
+                            <a class="nav-link" href="/private.php">Приватная</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/personal/index.php">Персональная</a>
                         </li>
                         <?php if (!$user) : ?>
                             <li class="nav-item">
-                                <a class="nav-link" href="auth.php">Войти</a>
+                                <a class="nav-link" href="/auth.php">Войти</a>
                             </li>
                         <? else : ?>
                             <li class="nav-item">
-                                <a class="nav-link" href="logout.php">Выйти</a>
+                                <a class="nav-link" href="/logout.php">Выйти</a>
                             </li>
                         <? endif; ?>
                     </ul>

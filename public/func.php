@@ -19,7 +19,7 @@ function connect_db(string $host, string $user, string $pwd, string $name) {
  * @return string Итоговый HTML
  */
 function include_template(string $name, array $data = []): string {
-    $name = 'templates/' . $name;
+    $name = __DIR__ . '/templates/' . $name;
     $result = '';
 
     if (!is_readable($name)) {

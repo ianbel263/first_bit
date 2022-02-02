@@ -6,13 +6,34 @@ CREATE DATABASE first_bit
 USE first_bit;
 
 CREATE TABLE user (
-    id       INT AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(255) NOT NULL UNIQUE,
-    pwd      VARCHAR(255) NOT NULL,
-    first_name VARCHAR(64),
-    middle_name VARCHAR(64),
-    last_name VARCHAR(64),
+    id            INT AUTO_INCREMENT PRIMARY KEY,
+    username      VARCHAR(255) NOT NULL UNIQUE,
+    password      CHAR(255)    NOT NULL,
+    nickname      VARCHAR(255),
+    is_active     BOOLEAN   DEFAULT 1,
+    email         VARCHAR(255),
+    phone         CHAR(11),
+    first_name    VARCHAR(64),
+    middle_name   VARCHAR(64),
+    last_name     VARCHAR(64),
+    gender        enum ('m', 'f'),
+    birthday_at   DATE      DEFAULT NULL,
+    created_at    TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at    TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    last_login_at DATETIME  DEFAULT NULL
+);
+
+CREATE TABLE post (
+    id         INT AUTO_INCREMENT PRIMARY KEY,
+    author_id  INT UNSIGNED NOT NULL,
+    image_url  VARCHAR(255),
+    heading    VARCHAR(64),
+    body       TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
+ALTER TABLE post
+    ADD CONSTRAINT post_author_id_fk
+        FOREIGN KEY (author_id) REFERENCES user (id)
+            ON DELETE CASCADE;

@@ -1,7 +1,7 @@
 <?php
-require_once('init.php');
-require_once('main/header.php');
-require_once('main/footer.php');
+require_once('../init.php');
+require_once('../main/header.php');
+require_once('../main/footer.php');
 
 
 if ($link) {

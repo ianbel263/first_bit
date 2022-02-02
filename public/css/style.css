@@ -110,3 +110,28 @@ body {
 .profile__heading {
     text-decoration: underline;
 }
+
+.blog__list {
+    margin: 0;
+    list-style: none;
+}
+
+.button--edit {
+    margin-right: 5px;
+}
+
+.blog__item {
+
+}
+
+.post__wrap {
+    padding: 5px;
+    border: 1px solid #7fff00;
+}
+
+.post__controls {
+    padding: 5px 0;
+    display: flex;
+    justify-content: flex-end;
+}
+
