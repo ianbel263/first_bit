@@ -6,12 +6,12 @@ VALUES ('test', 'secret', 'Иван', 'Иванович', 'Васильев'),
        ('test5', 'secret', 'Василий', 'Леонидович', 'Григорьев'),
        ('test6', 'secret', 'Дарья', 'Петровна', 'Лобанова');
 
-ALTER TABLE user
-    ADD (birthday_at DATE DEFAULT NULL,
-         gender enum ('m', 'f'),
-         email VARCHAR(255),
-         phone CHAR(11)
-        );
+# ALTER TABLE user
+#     ADD (birthday_at DATE DEFAULT NULL,
+#          gender enum ('m', 'f'),
+#          email VARCHAR(255),
+#          phone CHAR(11)
+#         );
 
 UPDATE user
 SET gender = 'm'

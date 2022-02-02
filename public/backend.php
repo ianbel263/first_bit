@@ -33,7 +33,7 @@ if ($link) {
                 $user = $res ? mysqli_fetch_array($res, MYSQLI_ASSOC) : null;
 
                 if ($user) {
-                    if ($user['pwd'] == $post_data['password']) {
+                    if ($user['password'] == $post_data['password']) {
                         $_SESSION['user'] = $user;
                     } else {
                         $errors['password'] = 'Неверный пароль';
