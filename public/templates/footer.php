@@ -9,6 +9,7 @@
     </footer>
 </div>
 </div>
-<script src="../js/script.js"></script>
+    <script src="../js/script.js"></script>
+    <script src="../js/blog.js"></script>
 </body>
 </html>

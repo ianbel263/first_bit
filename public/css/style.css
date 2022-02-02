@@ -116,22 +116,25 @@ body {
     list-style: none;
 }
 
-.button--edit {
-    margin-right: 5px;
+.post {
+    cursor: pointer;
 }
 
-.blog__item {
+.post:hover {
+    opacity: 0.7;
+}
 
+.post:active {
+    opacity: 1;
 }
 
 .post__wrap {
-    padding: 5px;
     border: 1px solid #7fff00;
 }
 
-.post__controls {
-    padding: 5px 0;
-    display: flex;
-    justify-content: flex-end;
+.post--minimized .post__author,
+.post--minimized .post__date,
+.post--minimized .post__text,
+.post--minimized .post__image {
+    display: none!important;
 }
-
