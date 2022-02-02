@@ -15,9 +15,9 @@ if ($link) {
         $post_data = json_decode($json, true);
         $errors = validate($post_data);
 
-        $user = new User($link, $post_data);
+        $user = new User();
 
-        if ($user->is_auth()) {
+        if (User::is_auth()) {
             $response_data = [
                 'result' => 'failure',
                 'data' => [],
@@ -31,11 +31,9 @@ if ($link) {
                     'errors' => $errors,
                 ];
             } else {
-                if (!$user->login()) {
-                    $errors = $user->get_errors();
-                }
+                $res = $user->login($link, $post_data);
 
-                if ($user->is_auth() && empty($errors)) {
+                if ($res && empty($errors)) {
                     $response_data = [
                         'result' => 'success',
                         'data' =>  $user->get_data(),
@@ -44,8 +42,8 @@ if ($link) {
                 } else {
                     $response_data = [
                         'result' => 'failure',
-                        'data' =>  [],
-                        'errors' => $errors,
+                        'data' => [],
+                        'errors' => $user->get_errors(),
                     ];
                 }
             }

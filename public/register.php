@@ -5,30 +5,31 @@ require_once('main/footer.php');
 require_once('main/classes/User.php');
 
 if ($link) {
-    if (isset($_SESSION['user'])) {
+    if (User::is_auth()) {
         http_response_code(403);
         die();
     }
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $form = $_POST;
-        $errors = validate($form);
-        $user = new User($link, $form);
+        $form_data = $_POST;
+        $errors = validate($form_data);
 
         if (count($errors)) {
             $page_content = include_template('register.php', [
                 'errors' => $errors
             ]);
         } else {
-            if ($user->register() && empty($errors)) {
+            $res = User::register($link, $form_data);
+
+            if ($res['success'] && empty($errors)) {
                 header('Location: /auth.php');
                 die();
-            } else {
-                $errors = $user->get_errors();
-                $page_content = include_template('register.php', [
-                    'errors' => $errors
-                ]);
             }
+
+            $errors = $res['errors'];
+            $page_content = include_template('register.php', [
+                'errors' => $errors
+            ]);
         }
     } else {
         $page_content = include_template('register.php', [

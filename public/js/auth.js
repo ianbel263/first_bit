@@ -77,6 +77,7 @@ if (authForm) {
         const userFullname = `${data.last_name} ${data.first_name} ${data.middle_name}`
         unMarkInvalid();
         welcomeTextEl.textContent = `Добро пожаловать, ${userFullname}!`;
+        window.location.href = 'private.php';
         authForm.hidden = true;
         welcomeTextEl.parentElement.hidden = false;
     };
