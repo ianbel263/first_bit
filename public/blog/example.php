@@ -1,5 +1,5 @@
 <?php
-require_once('../init.php');
+require_once('../main/init.php');
 require_once('../main/header.php');
 require_once('../main/footer.php');
 

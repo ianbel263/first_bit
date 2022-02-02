@@ -1,6 +1,6 @@
 <?php
 require_once('db.php');
-require_once('func.php');
+require_once('functions.php');
 
 session_start();
 
