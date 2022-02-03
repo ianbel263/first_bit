@@ -28,6 +28,28 @@ class User
         return false;
     }
 
+    public static function update($link, $id, $data) {
+        $fields = [
+          'username', 'nickname', 'email', 'phone',
+          'first_name', 'middle_name', 'last_name',
+          'gender', 'birthday_at'
+        ];
+        $id = intval($id);
+        if ($id == 0) {
+            return false;
+        }
+        $values = [];
+        foreach ($data as $key => $value) {
+            if (!$value || !in_array($key, $fields)) {
+                continue;
+            }
+            $values[$key] = $key . '="' . mysqli_real_escape_string($link, $value) . '"';
+        }
+        $sql = 'UPDATE user SET '. implode(', ', $values) . ' WHERE id = ' . $id;
+        $res = mysqli_query($link, $sql);
+        return $res ? true : false;
+    }
+
     public static function register($link, $data) {
         $res_register = null;
         $errors = [];
