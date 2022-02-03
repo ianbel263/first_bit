@@ -8,7 +8,7 @@
     <title><?= $title ?></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
             crossorigin="anonymous"></script>
@@ -20,23 +20,29 @@
             <div class="page_header__top">
                 <nav class="page_header__navbar navbar navbar-expand-lg navbar-light container">
                     <a href="/" class="page_header__logo logo navbar-brand">
-                        <img width="163" height="29" src="../img/logo.svg" alt="Первый Бит">
+                        <img width="163" height="29" src="/img/logo.svg" alt="Первый Бит">
                     </a>
                     <ul class="nav navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="/blog/example.php">Блог</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/private.php">Приватная</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/personal/index.php">Персональная</a>
+                            <a class="nav-link" href="/blog/index.php">Блог</a>
                         </li>
                         <?php if (!$user) : ?>
                             <li class="nav-item">
                                 <a class="nav-link" href="/auth.php">Войти</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/register.php">Регистрация</a>
+                            </li>
                         <? else : ?>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="dropdown03" data-bs-toggle="dropdown" aria-expanded="false">Меню пользователя</a>
+                                <ul class="dropdown-menu" aria-labelledby="dropdown03">
+                                    <li><a class="dropdown-item" href="/personal/myblog/index.php">Мои посты</a></li>
+                                    <li><a class="dropdown-item" href="/personal/myblog/add.php">Добавить пост</a></li>
+                                    <li><a class="dropdown-item" href="/private.php">Приватная</a></li>
+                                    <li><a class="dropdown-item" href="/personal/index.php">Персональная</a></li>
+                                </ul>
+                            </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="/logout.php">Выйти</a>
                             </li>

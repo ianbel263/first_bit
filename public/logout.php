@@ -1,5 +1,4 @@
 <?php
-session_start();
+require_once('main/classes/User.php');
 
-$_SESSION = [];
-header('Location: /');
+User::logout();

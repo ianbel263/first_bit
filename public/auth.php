@@ -1,9 +1,14 @@
 <?php
-require_once('init.php');
+require_once('main/init.php');
 require_once('main/header.php');
 require_once('main/footer.php');
+require_once('main/classes/User.php');
 
 if ($link) {
+    if (User::is_auth()) {
+        header('Location: /private.php');
+        die();
+    }
     $page_content = include_template('auth.php', [
         'user' => null,
         'errors' => []

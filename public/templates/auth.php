@@ -3,7 +3,7 @@
 </div>
 <div class="form" id="auth_form">
     <form action="" method="post">
-        <h1 class="form__heading">Авторизация</h1>
+        <h2 class="form__heading">Авторизация</h2>
         <div class="form__item">
             <label for="username">Логин<sup>*</sup></label>
             <input id="username" type="text" name="username" value=""
