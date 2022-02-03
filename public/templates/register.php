@@ -1,6 +1,6 @@
 <div class="form form--register" id="register_form">
     <form class="row" action="" method="post">
-        <h1 class="form__heading">Регистрация</h1>
+        <h2 class="form__heading">Регистрация</h2>
         <div class="form__item col-md-6 <?= isset($errors['username']) ? "form__item--invalid" : ""; ?>">
             <label for="username">Логин<sup>*</sup></label>
             <input id="username" type="text" name="username" value="<?= get_post_value('username'); ?>"

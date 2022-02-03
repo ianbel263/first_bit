@@ -76,9 +76,48 @@ function validate(array $data): array {
             case 'password2':
                 $errors[$key] = empty($value) ? 'Подтвердите пароль' : null;
                 break;
+            case 'heading':
+                $errors[$key] = empty($value) ? 'Введите заголовок' : null;
+                break;
+            case 'body':
+                $errors[$key] = empty($value) ? 'Введите текст' : null;
+                break;
         }
     }
     return array_filter($errors);
+}
+
+
+function validate_file(bool $is_errors): array {
+    $errors = [];
+    $file_url = null;
+
+    $file_mime_types = [
+        'image/png',
+        'image/jpg',
+        'image/jpeg'
+    ];
+
+    if (!empty($_FILES['post_image']['name'])) {
+        $tmp_name = $_FILES['post_image']['tmp_name'];
+        $file_name = $_FILES['post_image']['name'];
+        $file_path = $_SERVER['DOCUMENT_ROOT'] . '/uploads/';
+        $file_url = '/uploads/' . $file_name;
+
+        $file_info = finfo_open(FILEINFO_MIME_TYPE);
+        $file_type = finfo_file($file_info, $tmp_name);
+
+        if (!in_array($file_type, $file_mime_types)) {
+            $errors['file'] = 'Загрузите картинку в формате jpg/jpeg/png';
+        } elseif (!$is_errors) {
+            move_uploaded_file($_FILES['post_image']['tmp_name'], $file_path . $file_name);
+        }
+    }
+
+    return [
+        'errors' => $errors,
+        'url' => $file_url
+    ];
 }
 
 

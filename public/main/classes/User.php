@@ -17,6 +17,10 @@ class User
         return isset($_SESSION['user']);
     }
 
+    public static function get_id() {
+        return isset($_SESSION['user']) ? $_SESSION['user']['id'] : null;
+    }
+
     public function login($link, $credentials) {
         $user = $this->check_credentials($link, $credentials);
         if ($user) {

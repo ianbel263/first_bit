@@ -4,7 +4,7 @@ require_once('../main/header.php');
 require_once('../main/footer.php');
 
 if ($link) {
-    $page_content = include_template('example.php');
+    $page_content = include_template('post_example.php');
 
     $layout_content = include_template('layout.php', [
         'header' => $header_content,

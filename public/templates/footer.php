@@ -9,7 +9,8 @@
     </footer>
 </div>
 </div>
-    <script src="../js/auth.js"></script>
-    <script src="../js/blog.js"></script>
+    <script src="/js/auth.js"></script>
+    <script src="/js/blog.js"></script>
+    <script src="/js/img_preview.js"></script>
 </body>
 </html>

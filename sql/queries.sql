@@ -6,6 +6,14 @@ VALUES ('test', 'secret', 'Иван', 'Иванович', 'Васильев'),
        ('test5', 'secret', 'Василий', 'Леонидович', 'Григорьев'),
        ('test6', 'secret', 'Дарья', 'Петровна', 'Лобанова');
 
+INSERT INTO post (author_id, image_url, heading, body)
+VALUES (3, '/img', 'Заголовок поста1', 'ыво лыфола лыовалф лаофлв лфвоыалы'),
+       (6, '/img', 'Заголовок поста2', 'Григорьфывафыевич'),
+       (6, '/img', 'Заголовок поста3', 'Игоревич'),
+       (1, '/img', 'Заголовок поста4', 'Васильевич'),
+       (7, '/img', 'Заголовок поста5', 'Леонидович'),
+       (1, '/img', 'Заголовок поста6', 'Петровна');
+
 # ALTER TABLE user
 #     ADD (birthday_at DATE DEFAULT NULL,
 #          gender enum ('m', 'f'),
@@ -52,3 +60,11 @@ ALTER TABLE user
         );
 
 TRUNCATE user;
+
+SELECT u.nickname, p.created_at, p.image_url, p.heading, p.body
+FROM post p
+JOIN user u
+ON p.author_id = u.id
+ORDER BY p.created_at DESC;
+
+DELETE FROM post WHERE id = 1;

@@ -50,7 +50,8 @@ body {
     border-radius: 15px;
 }
 
-.form--register {
+.form--register,
+.form--add_post {
     width: auto;
 }
 
@@ -100,7 +101,8 @@ body {
     border-radius: 5px;
 }
 
-.form__item--invalid input {
+.form__item--invalid input,
+.form__item--invalid textarea {
     outline-color: #ff0000;
     border-color: #ff0000;
 }
@@ -109,6 +111,11 @@ body {
     font-size: 10px;
     color: #ff0000;
     text-align: center;
+}
+
+.form--add_post textarea {
+    height: 100px;
+    resize: none;
 }
 
 .profile__heading {
@@ -121,24 +128,43 @@ body {
 }
 
 .post {
+    position: relative;
     cursor: pointer;
+}
+
+.post__button_edit {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: none;
+    z-index: 10;
+}
+
+.post__wrap {
+    border: 1px solid #7fff00;
+    z-index: 5;
 }
 
 .post:hover {
     opacity: 0.7;
 }
 
+.post:hover .post__button_edit {
+    display: block;
+}
+
 .post:active {
     opacity: 1;
 }
 
-.post__wrap {
-    border: 1px solid #7fff00;
+.post__image img {
+    object-fit: cover;
 }
 
-.post--minimized .post__author,
-.post--minimized .post__date,
-.post--minimized .post__text,
-.post--minimized .post__image {
+.post__wrap--minimized .post__author,
+.post__wrap--minimized .post__date,
+.post__wrap--minimized .post__text,
+.post__wrap--minimized .post__image {
     display: none!important;
 }

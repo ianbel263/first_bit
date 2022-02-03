@@ -27,8 +27,8 @@ CREATE TABLE post (
     id         INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     author_id  INT UNSIGNED NOT NULL,
     image_url  VARCHAR(255),
-    heading    VARCHAR(64),
-    body       TEXT,
+    heading    VARCHAR(64) NOT NULL,
+    body       TEXT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
